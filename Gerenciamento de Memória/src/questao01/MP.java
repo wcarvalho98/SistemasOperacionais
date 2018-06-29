@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class MP {
 	
-	private final int TAMANHO = 512000;
-	private final int BITMAP = 4;
+	private final int TAMANHO = 512000;		//valor em kb
+	private final int BITMAP = 4;			//valor em kb
 	private static MP instance;
 	private int espacoDisponivel;
 	private boolean[] alocado;
