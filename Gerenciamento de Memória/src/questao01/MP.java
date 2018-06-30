@@ -74,10 +74,11 @@ public class MP {
 				if (counter == tamanho) {
 					idx = i - (counter - 1);
 					aloca = true;
-					if ((p.getTamanho() % BITMAP) == 0)
+					if ((p.getTamanho() % BITMAP) == 0) {
 						this.espacoDisponivel -= p.getTamanho();
-					else
+					} else {
 						this.espacoDisponivel -= ((BITMAP - (p.getTamanho() % BITMAP)) + p.getTamanho());
+					}
 					break;
 				}
 			} else {
@@ -101,23 +102,24 @@ public class MP {
 		for (Processo p : this.processos) {
 			if (p.getIndice() != -1) {
 				if (p.getTempoDeVida() == 1) {
-					System.out.println("Processo #" + p.getId() + " está saindo da memória!");
 					if ((p.getTamanho() % BITMAP) == 0) {
 						this.espacoDisponivel += p.getTamanho();
 					} else {
 						this.espacoDisponivel += ((BITMAP - (p.getTamanho() % BITMAP)) + p.getTamanho());
 					}
-					int iterador = (int) Math.nextUp((float) (p.getTamanho() / BITMAP));
-					for (int i = p.getIndice(); i < iterador; i++)
-						this.alocado[i] = false;
+					desalocaProcesso(p);
 					remover.add(p);
 				} else {
 					p.setTempoDeVida(p.getTempoDeVida() - 1);
+					System.out.println("Processo #" + p.getId() + " possui " 
+					+ p.getTempoDeVida() + " unidades de tempo restante!");
 				}
 			}
 		}
-		for (int i = 0; i < remover.size(); i++)
+		for (int i = 0; i < remover.size(); i++) {
 			processos.remove(remover.get(i));
+			System.out.println("Processo #" + remover.get(i).getId() + " está saindo da memória!");
+		}
 	}
 	
 	private void desalocaProcesso(Processo p) {
