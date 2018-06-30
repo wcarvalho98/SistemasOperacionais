@@ -1,6 +1,6 @@
 package questao01;
 
-public class Processo implements Comparable<Processo>{
+class Processo implements Comparable<Processo>{
 
 	private int tamanho;
 	private int id;

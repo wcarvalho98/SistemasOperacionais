@@ -1,6 +1,6 @@
 package questao01;
 
-public class Main {
+class Main {
 	
 	public static void main(String[] args) throws InterruptedException {
 		

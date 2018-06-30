@@ -3,7 +3,7 @@ package questao01;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class MP {
+class MP {
 	
 	private final int TAMANHO = 512000;		//valor em kB
 	private final int BITMAP = 4;			//valor em kB
