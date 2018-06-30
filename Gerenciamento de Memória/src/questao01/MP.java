@@ -5,8 +5,8 @@ import java.util.Collections;
 
 public class MP {
 	
-	private final int TAMANHO = 512000;		//valor em kb
-	private final int BITMAP = 4;			//valor em kb
+	private final int TAMANHO = 512000;		//valor em kB
+	private final int BITMAP = 4;			//valor em kB
 	private static MP instance;
 	private int espacoDisponivel;
 	private boolean[] alocado;
@@ -44,9 +44,9 @@ public class MP {
 						System.out.println("Tamanho do processo: " + atual.getTamanho());
 						System.out.println("Espaço disponível atualmente: " + this.espacoDisponivel);
 					} else {
-						System.out.println("Segmentando memória para alocar o processo #" + atual.getId() + "!");
-						segmentaMemoria();
-						System.out.println("Memória segmentada!");
+						System.out.println("Compactando memória para alocar o processo #" + atual.getId() + "!");
+						compactaMemoria();
+						System.out.println("Memória compactada!");
 						if (alocaProcesso(atual)) {
 							System.out.println("Processo #" + atual.getId() + " alocado na memória!");							
 						} else {
@@ -90,6 +90,7 @@ public class MP {
 		for (int i = idx; i < (idx + tamanho); i++) 
 			alocado[i] = true;
 		p.setIndice(idx);
+		System.out.println("Processo #" + p.getId() + " alocado no indice " + idx);
 		return aloca;		
 	}
 	
@@ -135,7 +136,7 @@ public class MP {
 			alocado[i] = true;
 	}
 	
-	private void segmentaMemoria() {
+	private void compactaMemoria() {
 		ArrayList<Processo> alocados = new ArrayList<Processo>();
 		for (Processo p : this.processos) {
 			if (p.getIndice() != -1)

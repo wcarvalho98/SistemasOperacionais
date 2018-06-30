@@ -6,11 +6,11 @@ public class Main {
 		
 		MP memoria = MP.getInstance();
 		
-		Processo p0 = new Processo(102400, 0, 3);
-		Processo p1 = new Processo(102400, 1, 1);
-		Processo p2 = new Processo(102400, 2, 2);
-		Processo p3 = new Processo(102400, 3, 1);
-		Processo p4 = new Processo(102400, 4, 2);
+		Processo p0 = new Processo(102400, 0, 2);
+		Processo p1 = new Processo(102400, 1, 5);
+		Processo p2 = new Processo(102400, 2, 5);
+		Processo p3 = new Processo(102400, 3, 3);
+		Processo p4 = new Processo(204800, 4, 2);
 		Processo p5 = new Processo(102400, 5, 3);
 		Processo p6 = new Processo(102400, 6, 4);
 		Processo p7 = new Processo(102400, 7, 3);
