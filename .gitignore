@@ -1,6 +1,4 @@
 
 \.metadata/
 
-\.recommenders/caches/manual-mappings\.json
-
-\.recommenders/caches/identified-project-coordinates\.json
+\.recommenders/
