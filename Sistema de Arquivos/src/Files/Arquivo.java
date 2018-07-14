@@ -1,9 +1,6 @@
 package Files;
 import java.time.LocalDateTime;
 
-import Exceptions.ArquivoAbertoException;
-import Exceptions.ArquivoFechadoException;
-
 public class Arquivo {
 
 	private String nome;
@@ -12,24 +9,29 @@ public class Arquivo {
 	private LocalDateTime dataDeModificacao;
 	private int tamanho;
 	private String dados;
-	private boolean aberto;
+	private String caminho;
+	private Diretorio pai;
 	
-	public Arquivo(String nome, String dados) {
+	public Arquivo(String nome, String dados, String caminho, Diretorio pai) {
 		this.dados = dados;
 		this.tamanho = dados.length() + 1;
 		this.dataDeCriacao = LocalDateTime.now();
 		this.dataDeModificacao = LocalDateTime.now();
-		this.aberto = false;
+		this.caminho = caminho;
+		this.caminho += nome;
+		this.setPai(pai);
 		geraNome(nome);
 		geraExtensao(nome);
 	}
 	
-	public Arquivo(String nome) {
+	public Arquivo(String nome, int tamanho, String caminho, Diretorio pai) {
 		this.dados = "";
-		this.tamanho = 1;
+		this.tamanho = tamanho;
 		this.dataDeCriacao = LocalDateTime.now();
 		this.dataDeModificacao = LocalDateTime.now();
-		this.aberto = false;
+		this.caminho = caminho;
+		this.caminho += nome;
+		this.setPai(pai);
 		geraNome(nome);
 		geraExtensao(nome);
 	}
@@ -70,28 +72,27 @@ public class Arquivo {
 
 	public void setDados(String dados) {
 		this.dados = dados;
-		this.dataDeModificacao = LocalDateTime.now();
 		this.tamanho = dados.length() + 1;
+		this.dataDeModificacao = LocalDateTime.now();
 	}
 
-	public boolean isAberto() {
-		return aberto;
+	public String getCaminho() {
+		return caminho;
 	}
-	
-	public void fechaArquivo() throws ArquivoFechadoException  {
-		if (isAberto()) {
-			this.aberto = false;
-		} else {
-			throw new ArquivoFechadoException();
-		}
+
+	public void setCaminho(String caminho) {
+		this.caminho = caminho;
+		this.caminho += this.nome;
+		this.caminho += this.extensao;
+		this.dataDeModificacao = LocalDateTime.now();
 	}
-	
-	public void abreArquivo() throws ArquivoAbertoException {
-		if (isAberto()) {
-			throw new ArquivoAbertoException();
-		} else {
-			this.aberto = true;
-		}
+
+	public Diretorio getPai() {
+		return pai;
+	}
+
+	public void setPai(Diretorio pai) {
+		this.pai = pai;
 	}
 
 	private void geraNome(String nome) {

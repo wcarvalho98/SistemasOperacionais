@@ -11,14 +11,18 @@ public class Diretorio {
 	private int tamanho;
 	private ArrayList<Arquivo> arquivos;
 	private ArrayList<Diretorio> diretorios;
+	private String caminho;
+	private Diretorio pai;
 	
-	public Diretorio(String nome) {
+	public Diretorio(String nome, String caminho, Diretorio pai) {
 		this.nome = nome;
 		this.dataDeCriacao = LocalDateTime.now();
 		this.dataDeModificacao = LocalDateTime.now();
 		this.tamanho = 2;
 		this.arquivos = new ArrayList<Arquivo>();
 		this.diretorios = new ArrayList<Diretorio>();
+		this.caminho = caminho;
+		this.pai = pai;
 	}
 	
 	public String getNome() {
@@ -39,6 +43,33 @@ public class Diretorio {
 
 	public int getTamanho() {
 		return tamanho;
+	}
+
+	public ArrayList<Arquivo> getArquivos() {
+		return arquivos;
+	}
+
+	public ArrayList<Diretorio> getDiretorios() {
+		return diretorios;
+	}
+
+	public String getCaminho() {
+		return caminho;
+	}
+
+	public void setCaminho(String caminho) {
+		this.caminho = caminho;
+		this.caminho += this.nome + "\\";
+		this.dataDeModificacao = LocalDateTime.now();
+	}
+
+	public Diretorio getPai() {
+		return pai;
+	}
+
+	public void setPai(Diretorio pai) {
+		this.pai = pai;
+		this.dataDeModificacao = LocalDateTime.now();
 	}
 
 	public void adicionaArquivo(Arquivo arq) {
@@ -67,18 +98,18 @@ public class Diretorio {
 	
 	@Override
 	public String toString() {
-		String retorno = "\t----------------------------------------------------------------\n";
+		String retorno = "----------------------------------------------------------------\n";
 		retorno += "Diretório " + this.nome + ":\n";
 		retorno += "\tTamanho: " + this.tamanho + "\n";
 		retorno += "\tData de criação: " + this.dataDeCriacao + "\n";
-		retorno += "\tData de modificação: " + this.dataDeModificacao + "\n\n";
+		retorno += "\tData de modificação: " + this.dataDeModificacao + "\n";
 		if (arquivos.size() != 0) {
 			retorno += "\tArquivos do diretório:\n\n";
 			for (int i = 0; i < arquivos.size(); i++)
 				retorno += arquivos.get(i).toString();
 		}
 		if (diretorios.size() != 0) {
-			retorno += "\tDiretórios dentro desse diretório:\n\n";
+			retorno += "\tDiretórios dentro desse diretório:\n";
 			Diretorio dir;
 			for (int i = 0; i < diretorios.size(); i++) {
 				dir = diretorios.get(i);
@@ -90,7 +121,7 @@ public class Diretorio {
 				retorno += "\t*****************************************\n";
 			}
 		}
-		retorno += "\t----------------------------------------------------------------\n";
+		retorno += "----------------------------------------------------------------\n";
 		
 		return retorno;
 	}
