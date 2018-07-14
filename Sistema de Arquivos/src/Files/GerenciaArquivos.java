@@ -77,7 +77,7 @@ public class GerenciaArquivos {
 			return profundidade;
 		}
 		boolean found = false;
-		for (int i = 1; i < busca.length - 1; i++) {
+		for (int i = 2; i < busca.length; i++) {
 			for (j = 0; j < dirAtual.getDiretorios().size(); j++) {
 				if (dirAtual.getDiretorios().get(j).getNome().equals(busca[i])) {
 					dirAtual = dirAtual.getDiretorios().get(j);
@@ -118,6 +118,8 @@ public class GerenciaArquivos {
 				}
 				dirAtual.adicionaDiretorio(dir);
 			}
+			this.caminho = path;
+			this.dirAtual = dir;
 			System.out.println("Diretório adicionado com sucesso.");
 		} else {
 			System.err.println("O sistema não pode encontrar o caminho especificado.");
@@ -145,6 +147,8 @@ public class GerenciaArquivos {
 			}
 			dirAtual.adicionaDiretorio(dir);
 		}
+		this.caminho = path;
+		this.dirAtual = dir;
 		System.out.println("Diretório adicionado com sucesso.");
 	}
 	
