@@ -44,6 +44,16 @@ public class Diretorio {
 	public int getTamanho() {
 		return tamanho;
 	}
+	
+	public void atualizaTamanho() {
+		this.tamanho = 2;
+		for (int i = 0; i < arquivos.size(); i++)
+			this.tamanho += arquivos.get(i).getTamanho();
+		for (int i = 0; i < diretorios.size(); i++)
+			this.tamanho += diretorios.get(i).getTamanho();
+		if (this.pai != null)
+			pai.atualizaTamanho();
+	}
 
 	public ArrayList<Arquivo> getArquivos() {
 		return arquivos;
@@ -74,25 +84,25 @@ public class Diretorio {
 
 	public void adicionaArquivo(Arquivo arq) {
 		this.arquivos.add(arq);
-		this.tamanho += arq.getTamanho();
+		atualizaTamanho();
 		this.dataDeModificacao = LocalDateTime.now();
 	}
 	
 	public void removeArquivo(Arquivo arq) {
 		this.arquivos.remove(arq);
-		this.tamanho -= arq.getTamanho();
+		atualizaTamanho();
 		this.dataDeModificacao = LocalDateTime.now();
 	}
 	
 	public void adicionaDiretorio(Diretorio dir) {
 		this.diretorios.add(dir);
-		this.tamanho += dir.getTamanho();
+		atualizaTamanho();
 		this.dataDeModificacao = LocalDateTime.now();
 	}
 	
 	public void removeDiretorio(Diretorio dir) {
 		this.diretorios.remove(dir);
-		this.tamanho -= dir.getTamanho();
+		atualizaTamanho();
 		this.dataDeModificacao = LocalDateTime.now();
 	}
 	

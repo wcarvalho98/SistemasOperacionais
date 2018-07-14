@@ -52,6 +52,12 @@ public class Particao {
 		this.tamanhoUtilizado += dir.getTamanho();
 	}
 	
+	public void atualizaTamanho() {
+		this.tamanhoUtilizado = 0;
+		for (int i = 0; i < diretorios.size(); i++)
+			this.tamanhoUtilizado += diretorios.get(i).getTamanho();
+	}
+	
 	@Override
 	public String toString() {
 		String retorno = "----------------------------------------------------------------\n";

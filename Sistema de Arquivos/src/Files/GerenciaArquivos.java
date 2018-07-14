@@ -97,6 +97,10 @@ public class GerenciaArquivos {
 	}
 	
 	public void criaDiretorio(String caminho, String nome) {
+		if (principal.getTamanhoUtilizado() + 2 > principal.getTamanhoTotal()) {
+			System.err.println("Não há espaço suficiente para criar um diretório.");
+			return;
+		}
 		if (buscaDiretorio(caminho) != -1) {
 			String path = caminho;
 			path += nome + "\\";
@@ -117,6 +121,7 @@ public class GerenciaArquivos {
 					}
 				}
 				dirAtual.adicionaDiretorio(dir);
+				principal.atualizaTamanho();
 			}
 			this.caminho = path;
 			this.dirAtual = dir;
@@ -127,6 +132,10 @@ public class GerenciaArquivos {
 	}
 	
 	public void criaDiretorio(String nome) {
+		if (principal.getTamanhoUtilizado() + 2 > principal.getTamanhoTotal()) {
+			System.err.println("Não há espaço suficiente para criar um diretório.");
+			return;
+		}
 		String path = this.caminho;
 		path += nome + "\\";
 		Diretorio dir = new Diretorio(nome, path, dirAtual);
@@ -146,6 +155,7 @@ public class GerenciaArquivos {
 				}
 			}
 			dirAtual.adicionaDiretorio(dir);
+			principal.atualizaTamanho();
 		}
 		this.caminho = path;
 		this.dirAtual = dir;
@@ -219,6 +229,10 @@ public class GerenciaArquivos {
 	}
 	
 	public void criaArquivoDados(String nome, String dados) {
+		if (principal.getTamanhoUtilizado() + dados.length() + 1 > principal.getTamanhoTotal()) {
+			System.err.println("Não há espaço suficiente para criar este arquivo.");
+			return;
+		}
 		if (dirAtual == null) {
 			System.err.println("Não é possível criar arquivos em uma partição.");
 			return;
@@ -232,10 +246,15 @@ public class GerenciaArquivos {
 		nome += ".txt";
 		Arquivo arq = new Arquivo(nome, dados, this.caminho, dirAtual);
 		dirAtual.adicionaArquivo(arq);
+		principal.atualizaTamanho();
 		System.out.println("Arquivo adicionado com sucesso.");
 	}
 	
 	public void criaArquivo(String nome, int tamanho) {
+		if (principal.getTamanhoUtilizado() + tamanho > principal.getTamanhoTotal()) {
+			System.err.println("Não há espaço suficiente para criar um diretório.");
+			return;
+		}
 		if (dirAtual == null) {
 			System.err.println("Não é possível criar arquivos em uma partição.");
 			return;
@@ -248,6 +267,7 @@ public class GerenciaArquivos {
 		}
 		Arquivo arq = new Arquivo(nome, tamanho, this.caminho, dirAtual);
 		dirAtual.adicionaArquivo(arq);
+		principal.atualizaTamanho();
 		System.out.println("Arquivo adicionado com sucesso.");
 	}
 	
@@ -262,7 +282,8 @@ public class GerenciaArquivos {
 		if (arq == null) {
 			System.err.println("O sistema não pode encontrar o arquivo especificado.");
 		} else {
-			dirAtual.getArquivos().remove(arq);
+			dirAtual.removeArquivo(arq);
+			principal.atualizaTamanho();
 			System.out.println("Arquivo removido com sucesso.");
 		}
 	}
@@ -281,6 +302,7 @@ public class GerenciaArquivos {
 				return;
 			} else {
 				principal.getDiretorios().remove(dir);
+				principal.atualizaTamanho();
 				System.out.println("Diretório removido com sucesso.");
 			}
 		} else {
@@ -295,6 +317,7 @@ public class GerenciaArquivos {
 				return;
 			} else {
 				principal.getDiretorios().remove(dir);
+				principal.atualizaTamanho();
 				System.out.println("Diretório removido com sucesso.");
 			}
 		}
