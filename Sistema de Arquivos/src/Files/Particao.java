@@ -119,6 +119,18 @@ public class Particao {
 			this.tamanhoUtilizado += diretorios.get(i).getTamanho();
 	}
 	
+	public void compacta() {
+		ArrayList<Bloco> aux = new ArrayList<Bloco>();
+		for (int i = 0; i < blocos.length; i++) {
+			if (blocos[i] != null)
+				aux.add(blocos[i]);
+		}
+		for (int i = 0; i < aux.size(); i++)
+			blocos[i] = aux.get(i);
+		for (int i = aux.size(); i < blocos.length; i++)
+			blocos[i] = null;
+	}
+	
 	@Override
 	public String toString() {
 		String retorno = "----------------------------------------------------------------\n";

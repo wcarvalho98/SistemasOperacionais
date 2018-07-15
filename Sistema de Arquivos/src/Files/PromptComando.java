@@ -25,6 +25,7 @@ public class PromptComando {
 				+ "diretório atual\n";
 		help += "\tinfoBloco - informações a respeito dos blocos do disco referente a todos "
 				+ "os blocos existentes\n";
+		help += "\tcompacta - compacta a memória\n";
 		help += "\thelp - comandos suportados pelo programa\n";
 		return help;
 	}
@@ -126,6 +127,9 @@ public class PromptComando {
 				break;
 			case "infoBloco":
 				manager.infoBloco();
+				break;
+			case "compacta":
+				manager.compacta();
 				break;
 				
 			default:

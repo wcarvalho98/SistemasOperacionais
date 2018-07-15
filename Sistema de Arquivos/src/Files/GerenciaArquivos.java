@@ -488,6 +488,12 @@ public class GerenciaArquivos {
 		}
 	}
 	
+	public void compacta() {
+		System.out.println("Compactando memória.");
+		principal.compacta();
+		System.out.println("Memória compactada.");
+	}
+	
 	public void infoBloco() {
 		for (int i = 0; i < principal.getBlocos().length; i++) {
 			if (principal.getBlocos()[i] == null) {
