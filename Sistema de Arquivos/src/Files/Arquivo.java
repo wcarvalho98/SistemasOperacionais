@@ -121,6 +121,10 @@ public class Arquivo {
 		this.extensao = aux;
 	}
 	
+	public String getNomeExtensao() {
+		return this.nome + this.extensao;
+	}
+	
 	@Override
 	public String toString() {
 		String retorno = "\t*****************************************\n";

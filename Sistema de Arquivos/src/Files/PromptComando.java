@@ -19,6 +19,12 @@ public class PromptComando {
 		help += "\tnavega - navega para um caminho informado\n";
 		help += "\tenter - entra em um diretório dentro do diretório/partição atual\n";
 		help += "\tout - sai do diretório atual para o anterior\n";
+		help += "\tinfoBlocoArq - informações a respeito dos blocos do disco referente aos "
+				+ "arquivos do diretório atual\n";
+		help += "\tinfoBlocoDir - informações a respeito dos blocos do disco referente ao "
+				+ "diretório atual\n";
+		help += "\tinfoBloco - informações a respeito dos blocos do disco referente a todos "
+				+ "os blocos existentes\n";
 		help += "\thelp - comandos suportados pelo programa\n";
 		return help;
 	}
@@ -68,6 +74,7 @@ public class PromptComando {
 				System.out.print("Nome do arquivo: ");
 				nome = sc.nextLine();
 				manager.removeArquivo(nome);
+				break;
 			case "criaArq":
 				System.out.print("Nome do arquivo: ");
 				nome = sc.nextLine();
@@ -111,9 +118,18 @@ public class PromptComando {
 			case "out":
 				manager.out();
 				break;
+			case "infoBlocoArq":
+				manager.infoBlocoArq();
+				break;
+			case "infoBlocoDir":
+				manager.infoBlocoDir(manager.getDirAtual());
+				break;
+			case "infoBloco":
+				manager.infoBloco();
+				break;
 				
 			default:
-				System.err.println("Comando não reconhecido pelo sistema.");
+				System.err.println("\nComando não reconhecido pelo sistema.");
 				break;
 			}
 		}
