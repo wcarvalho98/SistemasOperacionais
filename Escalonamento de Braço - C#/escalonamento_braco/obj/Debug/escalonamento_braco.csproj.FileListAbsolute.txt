@@ -1,0 +1,7 @@
+C:\Users\acaro\GitHub\escalonamento_braco\escalonamento_braco\bin\Debug\escalonamento_braco.exe.config
+C:\Users\acaro\GitHub\escalonamento_braco\escalonamento_braco\bin\Debug\escalonamento_braco.exe
+C:\Users\acaro\GitHub\escalonamento_braco\escalonamento_braco\bin\Debug\escalonamento_braco.pdb
+C:\Users\acaro\GitHub\escalonamento_braco\escalonamento_braco\obj\Debug\escalonamento_braco.csprojResolveAssemblyReference.cache
+C:\Users\acaro\GitHub\escalonamento_braco\escalonamento_braco\obj\Debug\escalonamento_braco.csproj.CoreCompileInputs.cache
+C:\Users\acaro\GitHub\escalonamento_braco\escalonamento_braco\obj\Debug\escalonamento_braco.exe
+C:\Users\acaro\GitHub\escalonamento_braco\escalonamento_braco\obj\Debug\escalonamento_braco.pdb
